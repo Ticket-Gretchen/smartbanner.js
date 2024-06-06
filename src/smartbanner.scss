@@ -4,9 +4,17 @@ $blue: #1474fc;
 $black: #000;
 
 .smartbanner {
-  position: absolute;
-  top: 0;
+  &.top {
+    top: 0;
+  }
+
+  &.bottom {
+    bottom: 0;
+  }
+  
+  position:fixed;
   left: 0;
+  z-index: 9999;
 
   overflow-x: hidden;
 

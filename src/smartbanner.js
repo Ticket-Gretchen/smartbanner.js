@@ -1,6 +1,6 @@
-import OptionParser from './optionparser.js';
-import Detector from './detector.js';
 import Bakery from './bakery.js';
+import Detector from './detector.js';
+import OptionParser from './optionparser.js';
 
 const DEFAULT_PLATFORMS = 'android,ios';
 const DEFAULT_CLOSE_LABEL = 'Close';
@@ -20,50 +20,12 @@ function handleClickout(event, self) {
   self.clickout();
 }
 
-function handleJQueryMobilePageLoad(event) {
-  if (!this.positioningDisabled) {
-    setContentPosition(event.data.height);
-  }
-}
-
 function addEventListeners(self) {
   let closeIcon = document.querySelector('.js_smartbanner__exit');
   closeIcon.addEventListener('click', (event) => handleExitClick(event, self));
 
   let button = document.querySelector('.js_smartbanner__button');
   button.addEventListener('click', (event) => handleClickout(event, self));
-
-  if (Detector.jQueryMobilePage()) {
-    $(document).on('pagebeforeshow', self, handleJQueryMobilePageLoad);
-  }
-}
-
-function removeEventListeners() {
-  if (Detector.jQueryMobilePage()) {
-    $(document).off('pagebeforeshow', handleJQueryMobilePageLoad);
-  }
-}
-
-function setContentPosition(value) {
-  let wrappers = Detector.wrapperElement();
-  for (let i = 0, l = wrappers.length, wrapper; i < l; i++) {
-    wrapper = wrappers[i];
-    if (Detector.jQueryMobilePage()) {
-      if (wrapper.getAttribute(datas.originalTop)) {
-        continue;
-      }
-      let top = parseFloat(getComputedStyle(wrapper).top);
-      wrapper.setAttribute(datas.originalTop, isNaN(top) ? 0 : top);
-      wrapper.style.top = value + 'px';
-    } else {
-      if (wrapper.getAttribute(datas.originalMarginTop)) {
-        continue;
-      }
-      let margin = parseFloat(getComputedStyle(wrapper).marginTop);
-      wrapper.setAttribute(datas.originalMarginTop, isNaN(margin) ? 0 : margin);
-      wrapper.style.marginTop = value + 'px';
-    }
-  }
 }
 
 function restoreContentPosition() {
@@ -152,7 +114,8 @@ export default class SmartBanner {
 
   get html() {
     let modifier = !this.options.customDesignModifier ? this.platform : this.options.customDesignModifier;
-    return `<div class="smartbanner smartbanner--${modifier} js_smartbanner">
+    let position = this.options.position || 'top';
+    return `<div class="smartbanner smartbanner--${position} smartbanner--${modifier} js_smartbanner ">
       <span class="smartbanner__exit js_smartbanner__exit" aria-label="${this.closeLabel}"></span>
       <div class="smartbanner__icon" style="background-image: url(${this.icon});"></div>
       <div class="smartbanner__info">
@@ -234,17 +197,11 @@ export default class SmartBanner {
     bannerDiv.outerHTML = this.html;
     let event = new Event('smartbanner.view');
     document.dispatchEvent(event);
-    if (!this.positioningDisabled) {
-      setContentPosition(this.height);
-    }
     addEventListeners(this);
   }
 
   exit() {
     removeEventListeners();
-    if (!this.positioningDisabled) {
-      restoreContentPosition();
-    }
     let banner = document.querySelector('.js_smartbanner');
     document.querySelector('body').removeChild(banner);
     let event = new Event('smartbanner.exit');
