@@ -201,7 +201,6 @@ export default class SmartBanner {
   }
 
   exit() {
-    removeEventListeners();
     let banner = document.querySelector('.js_smartbanner');
     document.querySelector('body').removeChild(banner);
     let event = new Event('smartbanner.exit');

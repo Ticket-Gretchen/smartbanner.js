@@ -1,18 +1,18 @@
 $light-grey: #f3f3f3;
-$grey: #716F6F;
+$grey: #716f6f;
 $blue: #1474fc;
 $black: #000;
 
 .smartbanner {
-  &.top {
+  &.smartbanner--top {
     top: 0;
   }
 
-  &.bottom {
+  &.smartbanner--bottom {
     bottom: 0;
   }
-  
-  position:fixed;
+
+  position: fixed;
   left: 0;
   z-index: 9999;
 
@@ -26,14 +26,12 @@ $black: #000;
   font-family: Helvetica, sans, sans-serif;
 
   &__exit {
-
     position: absolute;
     top: calc(50% - 6px);
     left: 9px;
 
     display: block;
     margin: 0;
-
 
     width: 12px;
     height: 12px;
@@ -51,7 +49,7 @@ $black: #000;
 
       background: $grey;
 
-      content: ' ';
+      content: " ";
     }
 
     &::before {
@@ -99,7 +97,6 @@ $black: #000;
     &__price {
       font-size: 12px;
     }
-
   }
 
   &__button {
@@ -128,7 +125,8 @@ $black: #000;
 
   /** Android styles **/
   &.smartbanner--android {
-    background: #3d3d3d url('data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7');
+    background: #3d3d3d
+      url("data:image/gif;base64,R0lGODlhCAAIAIABAFVVVf///yH5BAEHAAEALAAAAAAIAAgAAAINRG4XudroGJBRsYcxKAA7");
     box-shadow: inset 0 4px 0 #88b131;
 
     .smartbanner__exit {
@@ -140,10 +138,11 @@ $black: #000;
 
       border-radius: 14px;
       background: #1c1e21;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) inset, 0 1px 1px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) inset,
+        0 1px 1px rgba(255, 255, 255, 0.3);
 
       color: #b1b1b3;
-      font-family: 'ArialRoundedMTBold', Arial;
+      font-family: "ArialRoundedMTBold", Arial;
       font-size: 20px;
       line-height: 17px;
       text-shadow: 0 1px 1px #000;
