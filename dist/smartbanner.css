@@ -72,6 +72,12 @@
 }
 .smartbanner__info__author, .smartbanner__info__price {
   font-size: 12px;
+  width: 85%;
+}
+@media screen and (min-width: 500px) {
+  .smartbanner__info__author, .smartbanner__info__price {
+    width: 100%;
+  }
 }
 .smartbanner__button {
   position: absolute;

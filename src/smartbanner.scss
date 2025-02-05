@@ -101,6 +101,14 @@ $black: #000;
     &__author,
     &__price {
       font-size: 12px;
+      width: 85%;
+    }
+
+    @media screen and (min-width: 500px) {
+      &__author,
+      &__price {
+        width: 100%;
+      }
     }
   }
 
