@@ -8,12 +8,12 @@ $black: #000;
   z-index: 9999;
 
   &.smartbanner--top {
-    position: absolute;
-    top: 0;
+    position: relative;
   }
 
-  &.smartbanner--topstatic {
-    position: static;
+  &.smartbanner--top-absolute {
+    position: absolute;
+    top: 0;
   }
 
   &.smartbanner--bottom {

@@ -3,7 +3,6 @@
  * Copyright © 2025 Ain Tohvri, contributors. Licensed under GPL-3.0.
  */
 .smartbanner {
-  position: absolute;
   left: 0;
   z-index: 9999;
   overflow-x: hidden;
@@ -14,6 +13,9 @@
   /** Android styles **/
 }
 .smartbanner.smartbanner--top {
+  position: relative;
+}
+.smartbanner.smartbanner--top-absolute {
   position: absolute;
   top: 0;
 }
