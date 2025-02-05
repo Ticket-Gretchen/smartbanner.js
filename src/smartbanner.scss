@@ -4,13 +4,16 @@ $blue: #1474fc;
 $black: #000;
 
 .smartbanner {
-  position: absolute;
   left: 0;
   z-index: 9999;
 
   &.smartbanner--top {
     position: absolute;
     top: 0;
+  }
+
+  &.smartbanner--topstatic {
+    position: static;
   }
 
   &.smartbanner--bottom {
